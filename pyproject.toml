@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jser"
+version = "0.0.1"
+dependencies = [
+    "pickle",
+    "jorm @ git+https://github.com/PickAim/jorm.git@v.0.1.25",
+]
