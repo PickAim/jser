@@ -1,9 +1,11 @@
+import ast
 import json
 import pickle
+from typing import Any
 
 from jorm.market.infrastructure import HandlerType
 
-from jser.constant import COMMISSION_WILDBERRIES_CSV, COMMISSION_KEY
+from jser.constant import COMMISSION_WILDBERRIES_CSV, COMMISSION_KEY, COMMISSION_WILDBERRIES_BINARY
 
 
 def update_niche_commission_file(output_path: str) -> None:
@@ -22,3 +24,8 @@ def update_niche_commission_file(output_path: str) -> None:
         json_string: str = json.dumps(commission_dict, indent=4, ensure_ascii=False)
         with open(output_path, 'wb') as out_file:
             pickle.dump(json_string, out_file)
+
+
+def get_commission_data() -> dict[str, Any]:
+    with open(COMMISSION_WILDBERRIES_BINARY, 'rb') as f:
+        return ast.literal_eval(pickle.load(f))

@@ -25,3 +25,5 @@ def get_path(dir_to_search: str, file_to_search: str):
 
 COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'commission.csv')
 WAREHOUSE_WILDBERRIES_JSON: Final[str] = get_path(file_dir, 'data_warehouse.txt')
+WAREHOUSE_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'warehouse_data.pickle')
+COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'commission.pickle')
