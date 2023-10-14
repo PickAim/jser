@@ -1,5 +1,6 @@
 import ast
 import json
+import os
 import pickle
 from typing import Any
 
@@ -10,6 +11,8 @@ from jser.constant import COMMISSION_WILDBERRIES_CSV, COMMISSION_KEY, COMMISSION
 
 def update_niche_commission_file(output_path: str) -> None:
     with open(COMMISSION_WILDBERRIES_CSV, "r", encoding="cp1251") as file:
+        if not os.path.exists('WildberriesOutput'):
+            os.mkdir('WildberriesOutput')
         commission_dict: dict = {}
         lines: list[str] = file.readlines()
         for line in lines:
@@ -22,10 +25,14 @@ def update_niche_commission_file(output_path: str) -> None:
                 }
             }
         json_string: str = json.dumps(commission_dict, indent=4, ensure_ascii=False)
-        with open(output_path, 'wb') as out_file:
+        with open(output_path, 'ab') as out_file:
             pickle.dump(json_string, out_file)
 
 
 def get_commission_data() -> dict[str, Any]:
     with open(COMMISSION_WILDBERRIES_BINARY, 'rb') as f:
         return ast.literal_eval(pickle.load(f))
+
+
+if __name__ == '__main__':
+    print(get_commission_data())

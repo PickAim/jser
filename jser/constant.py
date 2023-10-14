@@ -7,9 +7,7 @@ RETURN_PERCENT_KEY: Final[str] = "return_percent"
 
 WILDBERRIES_NAME: Final[str] = 'wildberries'
 
-splitted: list[str] = os.getcwd().split(os.sep)[:-1]
-splitted[0] += os.sep
-file_dir: str = os.path.join(*splitted)
+file_dir: list[str] = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_path(dir_to_search: str, file_to_search: str):
@@ -23,7 +21,8 @@ def get_path(dir_to_search: str, file_to_search: str):
 # with open(__NICHE_TO_CATEGORY, 'rb') as file:
 #     NICHE_TO_CATEGORY: Final[dict[str, str]] = pickle.load(file)
 
-COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'commission.csv')
+COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'niche_commission.csv')
 WAREHOUSE_WILDBERRIES_JSON: Final[str] = get_path(file_dir, 'data_warehouse.txt')
-WAREHOUSE_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'warehouse_data.pickle')
-COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'commission.pickle')
+WAREHOUSE_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'information/WildberriesOutput/warehouse_data.pickle')
+COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir,
+                                                     'commission/WildberriesOutput/niche_commission.pickle')

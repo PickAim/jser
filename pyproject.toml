@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jser"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
     "pickle",
-    "jorm @ git+https://github.com/PickAim/jorm.git@v.0.1.25",
+    "jorm @ git+https://github.com/PickAim/jorm.git@v.0.1.26",
 ]
