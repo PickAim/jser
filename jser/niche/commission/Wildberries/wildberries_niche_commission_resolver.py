@@ -2,7 +2,6 @@ import ast
 import json
 import os
 import pickle
-from typing import Any
 
 from jser.JserResolver.commission_resolver import JserCommissionResolver
 from jser.constant import COMMISSION_WILDBERRIES_CSV, COMMISSION_KEY, COMMISSION_WILDBERRIES_BINARY, HandlerType, \
@@ -14,10 +13,10 @@ class WildberriesCommissionResolver(JserCommissionResolver):
     def __init__(self):
         super().__init__()
 
-    def _get_commision_output_path(self):
+    def _get_commision_output_path(self) -> str:
         return COMMISSION_WILDBERRIES_BINARY
 
-    def _get_commision_input_path(self):
+    def _get_commision_input_path(self) -> str:
         return COMMISSION_WILDBERRIES_CSV
 
     def _get_commission_for_niche(self, niche_name: str) -> dict[str, float]:
@@ -65,6 +64,6 @@ class WildberriesCommissionResolver(JserCommissionResolver):
             with open(output_path, 'ab') as out_file:
                 pickle.dump(json_string, out_file)
 
-    def get_commission_data(self, path) -> dict[str, Any]:
+    def get_commission_data(self, path) -> dict[str, any]:
         with open(path, 'rb') as f:
             return ast.literal_eval(pickle.load(f))

@@ -16,19 +16,19 @@ class JserCommissionResolver(ABC):
         return self.get_commission_data(commision_output_path)
 
     @abstractmethod
-    def _get_commision_output_path(self):
+    def _get_commision_output_path(self) -> str:
         pass
 
     @abstractmethod
-    def _get_commision_input_path(self):
+    def _get_commision_input_path(self) -> str:
         pass
 
     @abstractmethod
-    def update_niche_commission_file(self, input_path: str, output_path: str):
+    def update_niche_commission_file(self, input_path: str, output_path: str) -> None:
         pass
 
     @abstractmethod
-    def get_commission_data(self, path):
+    def get_commission_data(self, path) -> dict[str, any]:
         pass
 
     @abstractmethod

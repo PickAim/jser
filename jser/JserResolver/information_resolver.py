@@ -14,29 +14,25 @@ class JserInformationResolver(ABC):
         return self.get_warehouses_data(warehouse_output_path)
 
     @abstractmethod
-    def _get_warehouse_input_path(self):
+    def _get_warehouse_input_path(self) -> str:
         pass
 
     @abstractmethod
-    def _get_warehouse_output_path(self):
+    def _get_warehouse_output_path(self) -> str:
         pass
 
     @abstractmethod
-    def get_data_for_warehouse(self, warehouse_id: str) -> float:
+    def get_data_for_warehouse(self, warehouse_id: str) -> dict[str, any]:
         pass
 
     @abstractmethod
-    def update_warehouse_file(self, input_path: str, output_path: str):
+    def update_warehouse_file(self, input_path: str, output_path: str) -> None:
         pass
 
     @abstractmethod
-    def get_warehouses_data(self, path: str):
+    def get_warehouses_data(self, path: str) -> dict[str, any]:
         pass
 
     @abstractmethod
-    def get_warehouses_data(self):
-        pass
-
-    @abstractmethod
-    def get_warehouses_data_from_file(self, path: str):
+    def get_warehouses_data_from_file(self, path: str) -> dict[str, any]:
         pass
