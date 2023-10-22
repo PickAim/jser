@@ -32,3 +32,7 @@ class JserInformationResolver(ABC):
     @abstractmethod
     def get_warehouses_data(self, path: str):
         pass
+
+    @abstractmethod
+    def mapping_warehouse_data(self):
+        pass

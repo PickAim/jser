@@ -17,7 +17,7 @@ class WildberriesDataResolver(JserInformationResolver):
     def _get_warehouse_input_path(self):
         return WAREHOUSE_WILDBERRIES_JSON
 
-    def __mapping_warehouse_data(self):
+    def mapping_warehouse_data(self):
         warehouses_data = self._warehouse_data['result']['resp']['data']
         warehouse_dict: dict[int, any] = {}
         for data in warehouses_data:
