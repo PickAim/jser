@@ -4,9 +4,9 @@ from abc import ABC, abstractmethod
 
 class JserInformationResolver(ABC):
     def __init__(self):
-        self._warehouse_data: dict = self.__get_warehouses_data()
+        self._warehouse_data: dict = self.__template_warehouses_data()
 
-    def __get_warehouses_data(self) -> dict[str, any]:
+    def __template_warehouses_data(self) -> dict[str, any]:
         warehouse_input_path = self._get_warehouse_input_path()
         warehouse_output_path = self._get_warehouse_output_path()
         if not os.path.exists(warehouse_output_path):
@@ -34,5 +34,9 @@ class JserInformationResolver(ABC):
         pass
 
     @abstractmethod
-    def mapping_warehouse_data(self):
+    def get_warehouses_data(self):
+        pass
+
+    @abstractmethod
+    def get_warehouses_data_from_file(self, path: str):
         pass

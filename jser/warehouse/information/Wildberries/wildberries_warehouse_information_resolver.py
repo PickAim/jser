@@ -17,17 +17,18 @@ class WildberriesDataResolver(JserInformationResolver):
     def _get_warehouse_input_path(self):
         return WAREHOUSE_WILDBERRIES_JSON
 
-    def mapping_warehouse_data(self):
-        warehouses_data = self._warehouse_data['result']['resp']['data']
+    def get_warehouses_data(self, path):
+        path = self._get_warehouse_output_path()
+        warehouses_data = self.get_warehouses_data_from_file(path)
         warehouse_dict: dict[int, any] = {}
-        for data in warehouses_data:
+        for data in warehouses_data['result']['resp']['data']:
             template_dict = {'name': data['warehouse'], 'address': data['address'], 'isFbs': data['isFbs'],
                              'isFbw': data['isFbw'], 'rating': data['rating']}
             warehouse_dict[data['id']] = template_dict
         return warehouse_dict
 
     def get_data_for_warehouse(self, id: int):
-        mapping_warehouse = self.__mapping_warehouse_data()
+        mapping_warehouse = self.get_warehouses_data()
         return {id: mapping_warehouse[id]}
 
     def update_warehouse_file(self, input_path: str, output_path: str):
@@ -38,6 +39,6 @@ class WildberriesDataResolver(JserInformationResolver):
         with open(output_path, 'wb') as f:
             pickle.dump(data, f)
 
-    def get_warehouses_data(self, path: str):
+    def get_warehouses_data_from_file(self, path: str):
         with open(path, 'rb') as f:
             return pickle.load(f)
