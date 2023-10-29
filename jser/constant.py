@@ -1,4 +1,5 @@
 import os
+from enum import Enum
 from pathlib import Path
 from typing import Final
 
@@ -7,9 +8,7 @@ RETURN_PERCENT_KEY: Final[str] = "return_percent"
 
 WILDBERRIES_NAME: Final[str] = 'wildberries'
 
-splitted: list[str] = os.getcwd().split(os.sep)[:-1]
-splitted[0] += os.sep
-file_dir: str = os.path.join(*splitted)
+file_dir: str = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_path(dir_to_search: str, file_to_search: str):
@@ -19,11 +18,19 @@ def get_path(dir_to_search: str, file_to_search: str):
         return os.path.join(dir_to_search, file_to_search)
 
 
-# __NICHE_TO_CATEGORY: Final[str] = get_path(file_dir, 'niche_to_category.paim')
-# with open(__NICHE_TO_CATEGORY, 'rb') as file:
-#     NICHE_TO_CATEGORY: Final[dict[str, str]] = pickle.load(file)
+COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'niche_commission.csv')
+COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir,
+                                                     'niche/commission/Wildberries/WildberriesOutput/niche_commission.pickle')
 
-COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'commission.csv')
-WAREHOUSE_WILDBERRIES_JSON: Final[str] = get_path(file_dir, 'data_warehouse.txt')
-WAREHOUSE_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'warehouse_data.pickle')
-COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir, 'commission.pickle')
+WAREHOUSE_WILDBERRIES_JSON: Final[str] = get_path(file_dir, 'data_warehouse.json')
+WAREHOUSE_WILDBERRIES_BINARY: Final[str] = get_path(file_dir,
+                                                    'warehouse/information/Wildberries/WildberriesOutput/warehouse_data.pickle')
+
+COMMISSION_KEY: Final[str] = "commission"
+RETURN_PERCENT_KEY: Final[str] = "return_percent"
+
+
+class HandlerType(Enum):
+    MARKETPLACE = "market"
+    PARTIAL_CLIENT = "partial client"
+    CLIENT = "client"

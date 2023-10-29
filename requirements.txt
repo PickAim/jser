@@ -1,2 +1,1 @@
-jorm@ git+https://github.com/PickAim/jorm.git@v.0.1.25
 pickleshare==0.7.5

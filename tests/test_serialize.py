@@ -1,21 +1,24 @@
-import os
 import unittest
-from os import listdir
-from os.path import isfile, join
 
-from jser.niche.commission.serialize_niche_commission import update_niche_commission_file
-from jser.warehouse.commision.serialize_warehouse_commision import update_warehouse_file
+from jser.niche.commission.Wildberries.wildberries_niche_commission_resolver import WildberriesCommissionResolver
+from jser.warehouse.information.Wildberries.wildberries_warehouse_information_resolver import \
+    WildberriesInformationResolver
 
 
 class SerializeTest(unittest.TestCase):
-    def test_update_niche_commission_file(self):
-        update_niche_commission_file("test_niche_commission.pickle")
-        onlyfiles = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
-        self.assertIn('test_niche_commission.pickle', onlyfiles)
-        os.remove("test_niche_commission.pickle")
 
-    def test_update_warehouse_file(self):
-        update_warehouse_file("test_warehouse_commission.pickle")
-        onlyfiles = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
-        self.assertIn('test_warehouse_commission.pickle', onlyfiles)
-        os.remove("test_warehouse_commission.pickle")
+    def test_update_niche_commission_file(self):
+        object_jser_resolver = WildberriesCommissionResolver()
+        niche_commission = object_jser_resolver.get_commission_for_niche_mapped('Кофе зерновой')
+        self.assertNotEqual(0, len(niche_commission))
+        niche_percent = object_jser_resolver.get_return_percent_for('Кофе зерновой')
+        self.assertNotEqual(0, niche_percent)
+
+    def test_get_warehouse__data_from_file(self):
+        object_jser_resolver = WildberriesInformationResolver()
+        warehouses = object_jser_resolver.get_warehouses_data()
+        self.assertNotEqual(0, len(warehouses))
+        warehouse = object_jser_resolver.get_warehouse_data(180)
+        self.assertEqual(0, len(warehouse))
+        warehouse = object_jser_resolver.get_warehouse_data(1013)
+        self.assertNotEqual(0, len(warehouse))
