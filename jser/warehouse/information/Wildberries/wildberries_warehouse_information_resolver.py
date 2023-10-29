@@ -26,9 +26,11 @@ class WildberriesInformationResolver(InformationResolver):
             warehouse_dict[data['id']] = template_dict
         return warehouse_dict
 
-    def get_warehouse_data(self, id: int) -> dict[str, any]:
+    def get_warehouse_data(self, id: int) -> list[any] | None:
         mapping_warehouse: dict[str, any] = self._mapped_warehouses_data
-        return {id: mapping_warehouse[id]}
+        if id not in mapping_warehouse:
+            return None
+        return mapping_warehouse[id]
 
     def _update_warehouse_file(self, input_path: str, output_path: str) -> None:
         with open(input_path, 'r', encoding='utf-8') as f:

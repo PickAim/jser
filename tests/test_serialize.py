@@ -16,5 +16,9 @@ class SerializeTest(unittest.TestCase):
 
     def test_get_warehouse__data_from_file(self):
         object_jser_resolver = WildberriesInformationResolver()
-        warehouses_data = object_jser_resolver.get_warehouses_data()
-        self.assertNotEqual(0, len(warehouses_data))
+        warehouses = object_jser_resolver.get_warehouses_data()
+        self.assertNotEqual(0, len(warehouses))
+        warehouse = object_jser_resolver.get_warehouse_data(180)
+        self.assertIsNone(warehouse)
+        warehouse = object_jser_resolver.get_warehouse_data(1013)
+        self.assertNotEqual(0, len(warehouse))
