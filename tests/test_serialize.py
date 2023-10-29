@@ -19,6 +19,6 @@ class SerializeTest(unittest.TestCase):
         warehouses = object_jser_resolver.get_warehouses_data()
         self.assertNotEqual(0, len(warehouses))
         warehouse = object_jser_resolver.get_warehouse_data(180)
-        self.assertIsNone(warehouse)
+        self.assertEqual(0, len(warehouse))
         warehouse = object_jser_resolver.get_warehouse_data(1013)
         self.assertNotEqual(0, len(warehouse))
