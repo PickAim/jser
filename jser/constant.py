@@ -18,7 +18,7 @@ def get_path(dir_to_search: str, file_to_search: str):
         return os.path.join(dir_to_search, file_to_search)
 
 
-COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'niche_commission.csv')
+COMMISSION_WILDBERRIES_CSV: Final[str] = get_path(file_dir, 'WildberriesInput/niche_commission.csv')
 COMMISSION_WILDBERRIES_BINARY: Final[str] = get_path(file_dir,
                                                      'niche/commission/Wildberries/WildberriesOutput/niche_commission.pickle')
 
